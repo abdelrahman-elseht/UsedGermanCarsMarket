@@ -142,7 +142,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🧑‍💻 Author
 👤 **Abdelrahman Elseht**  
 - AI Engineer passionate about data and machine learning.  
-- Connect with me on [LinkedIn](https://linkedin.com/in/abdelrahman-elseht) or check out my other projects!  
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/abdelrahman-e-2bbb882a2/) or check out my other projects!  
 
 ---
 
