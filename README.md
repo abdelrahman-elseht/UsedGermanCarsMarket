@@ -2,10 +2,7 @@
 
 # 🚗 Used German Cars Market Analysis & Price Prediction
 
-![GitHub repo size](https://img.shields.io/github/repo-size/username/used-german-cars-analysis)  
-![GitHub last commit](https://img.shields.io/github/last-commit/username/used-german-cars-analysis)  
-![GitHub issues](https://img.shields.io/github/issues/username/used-german-cars-analysis)  
-![GitHub stars](https://img.shields.io/github/stars/username/used-german-cars-analysis?style=social)
+
 
 Welcome to the **Used German Cars Market Analysis** project! 🚘  
 This repository is a deep dive into the German used car market to uncover insights, clean messy data, and build a machine learning pipeline to predict car prices accurately. If you’re a data enthusiast or machine learning fan, you’ll love this project!
