@@ -1,6 +1,8 @@
 reusable_prompts.txt
 bmi_imbalanced.csv
 dd.py
+autos.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
