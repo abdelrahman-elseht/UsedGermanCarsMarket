@@ -1,0 +1,12 @@
+pandas 
+numpy
+seaborn
+plotly
+matplotlib
+scikit-learn
+#-e .
+skimpy
+nltk
+tqdm
+xgboost
+imbalanced-learn

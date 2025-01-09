@@ -1,16 +1,8 @@
 from setuptools import setup,find_packages
+from src.utils import get_requirements
 
 
-def get_requirements(file_path:str)->list:
-  requirements = []
-  with open(file_path) as file_obj:
-    requirements = file_obj.readlines()
-    requirements = [req.replace("\n","") for req in requirements]
 
-    if ('-e .') in requirements:
-      requirements.remove('-e .')
-
-  return requirements
 
 
 
