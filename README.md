@@ -12,7 +12,7 @@ This repository is a deep dive into the German used car market to uncover insigh
 ## 📌 Project Highlights
 
 ✨ **Data Collection:**  
-- The core dataset was sourced from [Kaggle](https://www.kaggle.com/). Missing values were then filled using **web scraping** from [Auto-Data.net](https://www.auto-data.net/en/) to enhance data quality.
+- The core dataset was sourced from [Kaggle]([https://www.kaggle.com/](https://www.kaggle.com/datasets/thedevastator/uncovering-factors-that-affect-used-car-prices)). Missing values were then filled using **web scraping** from [Auto-Data.net](https://www.auto-data.net/en/) to enhance data quality.
 
 ✨ **Exploratory Data Analysis (EDA):**  
 - Created stunning **univariate and multivariate visualizations** to uncover trends and patterns in the used car market.  
