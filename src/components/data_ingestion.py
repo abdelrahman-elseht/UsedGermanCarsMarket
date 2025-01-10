@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 from dataclasses import dataclass
 from src.components.DataScraping import DataScraper, DataScraperConfig
+from src.components.feature_engineering import FeatureEngineering, FeatureEngineeringConfig
 
 
 @dataclass
@@ -24,7 +25,7 @@ class DataIngestion:
         logger = Logger()
         logger.info('Data Ingestion started')
         try:
-            df = pd.read_csv(self.ingestion_config.scraped_data_path, parse_dates=['dateCrawled', 'lastSeen', 'dateCreated'])
+            df = pd.read_csv(self.ingestion_config.scraped_data_path, parse_dates=[ 'sold_date', 'dateCreated'])
             logger.info("Read the Scraped dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -51,7 +52,16 @@ class DataIngestion:
 
 if __name__ == '__main__':
     logger = Logger()
-    logger.info("Scraping for Data Ingestion started")
+    logger.info("Starting DataIngestion...")
+    logger.info('starting feature engineering')
+    try:
+        config = FeatureEngineeringConfig(logger=logger)
+        fe = FeatureEngineering(config)
+        fe.feature_engineering()
+    except Exception as e:
+        logger.error(e)
+        raise CustomException(e, sys)
+    logger.info("Scraping  Data  started")
 
     try:
         config = DataScraperConfig(logger=logger)
@@ -62,7 +72,7 @@ if __name__ == '__main__':
         raise CustomException(e, sys)
 
     try:
-        logger.info("Data Ingestion started")
+        logger.info("split the data into train and test")
         obj = DataIngestion()
         train_data_path, test_data_path, raw_data_path = obj.initiate_data_ingestion()
     except Exception as e:

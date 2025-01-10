@@ -16,7 +16,7 @@ class DataScraperConfig:
     """
     logger: Logger
     data_path: str = os.path.join('artifacts', 'scrapped_data.csv')
-    input_file: str = os.path.join('src', 'Notebook', 'Data', 'autos.csv')  # Use forward slashes
+    input_file: str = os.path.join('artifacts', 'Feature_Engineered_Data.csv')  # Use forward slashes
     data: pd.DataFrame = field(default_factory=pd.DataFrame, init=False)  # Initialize as empty DataFrame
 
     def __post_init__(self):
@@ -30,7 +30,7 @@ class DataScraperConfig:
         Load data from the input file and handle errors.
         """
         try:
-            df = pd.read_csv(self.input_file, parse_dates=['dateCrawled', 'lastSeen', 'dateCreated'])
+            df = pd.read_csv(self.input_file, parse_dates=['sold_date', 'dateCreated'])
             self.logger.info(f"Data successfully loaded from {self.input_file}")
             return df
         except FileNotFoundError:
@@ -82,6 +82,20 @@ class DataScraper:
         for car_model, v_type in results:
             if v_type:
                 self.config.data.loc[self.config.data['car_model'] == car_model, 'vehicleType'] = v_type
+    
+    def post_scraping_cleaning(self):
+        """
+        Perform post-scraping cleaning on the DataFrame.
+        This includes removing rows where 'vehicleType' is NaN and resetting the index.
+        """
+        # Drop rows where 'vehicleType' is NaN
+        self.config.data.dropna(subset=['vehicleType'], inplace=True)
+        
+        # Reset the index after dropping rows
+        self.config.data.reset_index(drop=True, inplace=True)
+        
+        # Log the cleaning process
+        self.config.logger.info("Post-scraping cleaning completed: Dropped rows with missing 'vehicleType' and reset the index.")
 
     def scrape_data(self):
         """
@@ -97,6 +111,9 @@ class DataScraper:
 
         # Update the DataFrame with the fetched vehicle types
         self.update_dataframe(results)
+
+        # Perform post-scraping cleaning
+        self.post_scraping_cleaning()
 
         # Log the results
         self.config.logger.info(f"Found: {self.found}")
